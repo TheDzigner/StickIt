@@ -1,0 +1,431 @@
+*,::before, ::after {
+ margin: 0;
+ padding: 0 ;
+ box-sizing: border-box ;
+ font-family: VarelaRound ;
+}
+
+
+body {
+  font-size: 15pt;
+  width: min(100%, 768px);
+  height: 100vh;
+  margin: 0 auto 0;
+  background-color: #0D1B2A ;
+}
+
+html{
+
+scroll-behavior: smooth ;
+}
+
+
+
+
+@font-face {
+  font-family: "VarelaRound";
+  src: url('/FontFamily/VarelaRound-Regular.ttf');
+}
+
+
+@font-face{
+  font-family: "KanitBlack";
+  src : url('/FontFamily/Kanit-Black.ttf');
+}
+
+@font-face{
+  font-family: "KanitBold";
+  src : url('/FontFamily/Kanit-Bold.ttf');
+}
+
+
+@font-face{
+  font-family: "KanitLight";
+  src : url('/FontFamily/Kanit-Light.ttf');
+}
+
+
+@font-face{
+  font-family: "Zeyada";
+  src : url('/FontFamily/Zeyada-Regular.ttf');
+}
+
+
+@font-face{
+  font-family: "DancingScript";
+  src : url('/FontFamily/DancingScript-VariableFont_wght.ttf');
+}
+
+
+
+
+.noScriptMessage {
+  background-color: #FF0000;
+  color: #FFFFFF;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+.pinned_container {
+ 
+ width: 100%;
+ height: 0;
+ margin: 0 auto 0 ;
+ overflow :hidden ;
+ transition :height .1s ease-in-out ;
+}
+
+.pinned_container.active{
+ 
+ height: 17rem;
+ transition :height .1s ease-in-out ;
+}
+
+
+.pinned_container .pinned_head {
+ width: 100%;
+ padding: 0 1em 0 1em;
+ display: flex ;
+ justify-content: space-between ;
+ align-items :center ;
+ position :fixed ;
+ top: 0;
+ z-index :10 ;
+  background-color: #0D1B2A ;
+
+}
+.pinned_head h3 {
+ 
+ font-size :.6em;
+ padding:.1em;
+ color: #E0E1DD ;
+}
+
+.pinned_head  .toggleShowPinned 
+{
+ outline: none ;
+ background-color: transparent;
+ border :none ;
+}
+
+.pinned_head .toggleShowPinned svg {
+ fill: #E0E1DD;
+}
+
+.pinned_container .sticky_wrapper {
+ 
+ width: 100%;
+ display: flex;
+ overflow-x :scroll ;
+ padding-top:2em;
+ margin :0 auto 0 ;
+ scroll-snap-type: x mandatory;
+}
+
+.pinned_container .sticky_wrapper::-webkit-scrollbar{
+  display: none;
+}
+
+.pinned_container .sticky_wrapper .pinned_sticky {
+ 
+ flex-shrink: 0;
+ width: 13rem;
+ height: 13rem;
+ scroll-snap-align: start;
+ background :#1B263B ;
+ border-radius :.5em;
+ margin: 0  .5em 0;
+ display: flex;
+ justify-content :center ;
+ align-items :center ;
+ flex-direction :column ;
+ overflow :hidden ;
+ -webkit-user-select: none;
+ user-select: none ;
+}
+.sticky_wrapper  .pinned_sticky  .stickyNote{
+ 
+ width: 100%;
+ max-height :10rem ;
+ height :10rem;
+ text-overflow: ellipsis;
+ word-break :break-all ;
+ white-space :wrap ;
+ padding: 1em;
+ overflow: hidden;
+ text-align: left ;
+ color: #FFFFFF;
+ font-size :.7em ;
+ font-weight :100 ;
+}
+
+
+
+
+
+.sticky_wrapper  .pinned_sticky .action_btns 
+{
+ width: 100%;
+ padding: 1em;
+ text-align: right ;
+}
+
+.pinned_sticky .action_btns  button {
+ 
+ display: inline-block;
+ margin :0 .2em 0;
+ background-color :#415A77;
+ padding:.2em;
+ border-radius :.5em;
+ border :none;
+ outline: none;
+}
+
+.pinned_sticky  .action_btns button svg{
+ 
+ fill: #E0E1DD;
+ -webkit-user-select: none;
+ user-select: none ;
+}
+ 
+
+.sticky_container {
+ 
+ width: 100%;
+ margin: 5% auto 0 ;
+ height: auto;
+ display: flex ;
+ justify-content :center;
+ gap: 1em;
+ align-items :center ;
+ flex-wrap: wrap;
+ /* flex-direction :column ; */
+ padding: 1em 1em 3em 1em;
+ 
+}
+
+
+.sticky_container .sticky_note.active {
+  transform: scale(1);
+  opacity: 1;
+  transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+
+.sticky_container .sticky_note {
+  width: 48%;
+  height: 20rem;
+  display: flex;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0.4em;
+  overflow: hidden;
+  background: #1b263b;
+  transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out, height 0.2s ease-in-out;
+  position: relative;
+  opacity: 0;
+  transform: scale(0);
+}
+
+@media (max-width:530px) {
+  .sticky_container  .sticky_note{
+    width: 100%;
+  }
+ }
+
+
+.sticky_container .sticky_note .date{
+  display :block ;
+  position :absolute ;
+  padding :.6em;
+  font-weight :700 ;
+  font-size :.3em ;
+  border-radius :.5em;
+  left: 1%;
+  bottom : 1%;
+  color:#666666;
+  background-color: rgba(183,185,190,.5);
+}
+
+
+
+.sticky_container .sticky_note.view{
+    animation: anim 3s alternate ;
+}
+
+@keyframes anim{
+ 
+   10%{
+    transform: translateX(-20px);
+   }20%{
+    transform: translateX(20px);
+   }30%{
+     transform: translateX(-20px);
+   }40%{
+     transform: translateX(20px);
+   }50% {
+    transform: translateX(-20px);
+   }60% {
+    transform: translateX(20px);
+   }70% {
+    transform: translateX(-20px);
+   }80% {
+    transform: translateX(20px);
+   }90% {
+    transform: translateX(-20px);
+   }100% {
+    transform: translateX(20px);
+   }
+ 
+}
+
+.sticky_note textarea{
+ 
+  width: 100%;
+  height: 100%;
+  resize: none ;
+  outline :none ;
+  background-color :transparent ;
+  border :none ;
+  padding: 0;
+  display: block ;
+  font-size:.8em; 
+  font-size :100;
+  border-left: 1px solid  rgba(183,185,190,.4);
+  color: #FFFFFF ;
+  text-align: justify-content ;
+  padding:.3em;
+}
+
+.sticky_note textarea::-webkit-scrollbar{
+  display: none;
+}
+
+.sticky_note .action_btns {
+ 
+ width: 100%;
+ margin-top: auto ;
+ padding :.2em;
+ text-align :right ;
+}
+
+
+
+
+
+.sticky_note .action_btns button {
+ 
+ display: inline-block ;
+ margin :0 .2em 0;
+ background-color :#415A77 ;
+ padding:.2em;
+ border-radius :.5em;
+ border :none ;
+ outline: none ;
+}
+
+.sticky_note .action_btns button svg{
+ 
+ fill: #E0E1DD;
+}
+
+.openPinnedSticky{
+ 
+ position :fixed ;
+ z-index :10 ;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ width: 80%;
+ height: auto;
+ padding :1em;
+ border-radius :.5em;
+ text-align :center ;
+ display :grid;
+ place-items: center ;
+ background-color :#FFFFFF ;
+ opacity :0 ;
+ visibility :hidden ;
+ transition :.2s ease-in-out ;
+ overflow :hidden ;
+}
+
+
+
+.openPinnedSticky.active{
+ opacity :1 ;
+ visibility :visible ;
+ transition :.2s ease-in-out ;
+}
+
+.openPinnedSticky .note{
+ 
+ width: 100%;
+ padding :1em;
+}
+
+.openPinnedSticky button{
+ 
+ position :absolute ;
+ right: 2%;
+ top: 2%;
+ background-color :transparent ;
+ border :none ;
+ outline :none ;
+}
+
+
+
+.createSticky {
+ 
+ position :fixed ;
+ right:5%;
+ bottom :5%;
+ z-index: 10;
+ width: 3rem;
+  height: 3rem;
+}
+
+.createSticky  button{
+ 
+ display: block;
+ width: 100%;
+ height: 100%;
+ border-radius :50%;
+ background-color :#E0E1DD;
+ font-size :1em;
+ outline :none ;
+ border :none ;
+ display :grid ;
+ place-items: center ;
+}
+
+
+footer{
+ 
+ width: 100%;
+ padding :.5em;
+ position :fixed ;
+ bottom :0 ;
+ z-index :10 ;
+ text-align :center ;
+ display: grid;
+ place-items: center;
+ font-size :.7em;
+ color: rgba(183,185,190,.5);
+ background-color: #0D1B2A ;
+ border-top: 1px groove rgba(183,185,190,.2);
+ 
+}
+
+footer a {
+ 
+ display :inline-block ;
+ text-decoration-color: #ccc;
+ color: #FFFFFF ;
+ font-size :.7em;
+}
